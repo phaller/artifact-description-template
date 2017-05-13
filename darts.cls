@@ -1,22 +1,22 @@
 %%
-%% This is file `lipics.cls',
+%% This is file `darts.cls',
 %% generated with the docstrip utility.
 %%
 %% The original source files were:
 %%
-%% lipics.dtx  (with options: `class')
+%% darts.dtx  (with options: `class')
 %% 
 %% -----------------------------------------------------------------
 %% Author:     le-tex publishing services
 %% 
-%% This file is part of the lipics package for preparing
-%% LIPICS articles.
+%% This file is part of the darts package for preparing
+%% DARTS articles.
 %% 
-%%       Copyright (C) 2010 Schloss Dagstuhl
+%%       Copyright (C) 2013 Schloss Dagstuhl
 %% -----------------------------------------------------------------
-\NeedsTeXFormat{LaTeX2e}[2005/12/01]
-\ProvidesClass{lipics-v2016}
-    [2016/02/16 v1.1 LIPIcs articles]
+\NeedsTeXFormat{LaTeX2e}[2011/06/27]
+\ProvidesClass{darts}
+    [2013/06/14 v1.00 DARTS articles]
 \emergencystretch1em
 \advance\hoffset-1in
 \advance\voffset-1in
@@ -120,55 +120,21 @@
   \@xsect{#5}}
 \def\@seccntformat#1{\csname the#1\endcsname}
 \def\@biblabel#1{\textcolor{darkgray}{\sffamily\bfseries#1}}
-
-\def\EventLogo#1{\gdef\@EventLogo{#1}}
-\EventLogo{}
-\def\EventEditors#1{\gdef\@EventEditors{#1}}
-\EventEditors{}
-\def\EventNoEds#1{\gdef\@EventNoEds{#1}\ifnum #1>1 \gdef\@Eds{Editors}\fi }    
-\EventNoEds{1}
-\gdef\@Eds{Editor}
-\def\EventLongTitle#1{\gdef\@EventLongTitle{#1}}
-\EventLongTitle{}
-\def\EventShortTitle#1{\gdef\@EventShortTitle{#1}}
-\EventShortTitle{}
-\def\EventAcronym#1{\gdef\@EventAcronym{#1}}
-\EventAcronym{}
-\def\EventYear#1{\gdef\@EventYear{#1}}
-\EventYear{}
-\def\EventDate#1{\gdef\@EventDate{#1}}
-\EventDate{}
-\def\EventLocation#1{\gdef\@EventLocation{#1}}
-\EventLocation{}
-\def\SeriesVolume#1{\gdef\@SeriesVolume{#1}}
-\SeriesVolume{}
-\def\ArticleNo#1{\gdef\@ArticleNo{#1}}
-\ArticleNo{}
-\def\DOIPrefix#1{\gdef\@DOIPrefix{#1}}
-\DOIPrefix{10.4230/LIPIcs}
-
-
+\def\three@digits#1{\ifnum#1>99\else\ifnum#1>9 0\else00\fi\fi\number#1}
 \def\copyrightline{%
-  \ifx\@EventLogo\@empty
-  \else
-    \setbox\@tempboxa\hbox{\includegraphics[height=42\p@]{\@EventLogo}}%
-    \rlap{\hspace\textwidth\hspace{-\wd\@tempboxa}\hspace{\z@}%
-          \vtop to\z@{\vskip-0mm\unhbox\@tempboxa\vss}}%
-  \fi
   \scriptsize
   \vtop{\hsize\textwidth
     \nobreakspace\\
     \@Copyright
-    \ifx\@EventLongTitle\@empty\else\@EventLongTitle.\\\fi
-    \ifx\@EventEditors\@empty\else
-      \@Eds: \@EventEditors
-      ; Article~No.\,\@ArticleNo; pp.\,\@ArticleNo:\thepage--\@ArticleNo:\pageref{LastPage}%
-      \\
-    \fi
-    \setbox\@tempboxa\hbox{\includegraphics[height=14\p@,trim=0 15 0 0]{lipics-logo-bw}}%
+    \textit{Dagstuhl Artifacts Series}%
+    \ifx\@Volume\@empty,\space Vol.\nobreakspace\textcolor{blue}{VOL}\else,\space Vol.\nobreakspace\@Volume\fi
+    \ifx\@Issue\@empty,\space Issue\nobreakspace\textcolor{blue}{ISS}\else,\space Issue\nobreakspace\@Issue\fi
+    \ifx\@Article\@empty,\space Artifact\nobreakspace{}No.\nobreakspace\textcolor{blue}{ART NO.}\else,\space Artifact\nobreakspace{}No.\nobreakspace\@Article\fi
+    ,\space \ifx\@Article\@empty pp.\nobreakspace{}\textcolor{blue}{ART}:\thepage--\textcolor{blue}{ART}:\pageref{LastPage}\else pp.\nobreakspace{}\@Article:\thepage--\@Article:\pageref{LastPage}\fi\\
+    \setbox\@tempboxa\hbox{\includegraphics[height=14\p@,trim=0 15 0 0]{darts-logo-bw}}%
     \hspace*{\wd\@tempboxa}\enskip
-    \href{http://www.dagstuhl.de/lipics/}%
-         {Leibniz International Proceedings in Informatics}\\
+    \href{http://www.dagstuhl.de/darts}%
+         {Dagstuhl Artifacts Series}\\
     \smash{\unhbox\@tempboxa}\enskip
     \href{http://www.dagstuhl.de}%
          {Schloss Dagstuhl -- Leibniz-Zentrum f{\"u}r Informatik, Dagstuhl Publishing, Germany}}}
@@ -177,24 +143,24 @@
   \let\@evenhead\@empty
   \let\@evenfoot\copyrightline
   \let\@oddfoot\copyrightline}
-\def\lipics@opterrshort{Option  "\CurrentOption" not supported}
-\def\lipics@opterrlong{The option "\CurrentOption" from article.cls is not supported by lipics.cls.}
-\DeclareOption{a5paper}{\@latexerr{\lipics@opterrshort}{\lipics@opterrlong}}
-\DeclareOption{b5paper}{\@latexerr{\lipics@opterrshort}{\lipics@opterrlong}}
-\DeclareOption{legalpaper}{\@latexerr{\lipics@opterrshort}{\lipics@opterrlong}}
-\DeclareOption{executivepaper}{\@latexerr{\lipics@opterrshort}{\lipics@opterrlong}}
-\DeclareOption{landscape}{\@latexerr{\lipics@opterrshort}{\lipics@opterrlong}}
-\DeclareOption{10pt}{\@latexerr{\lipics@opterrshort}{\lipics@opterrlong}}
-\DeclareOption{11pt}{\@latexerr{\lipics@opterrshort}{\lipics@opterrlong}}
-\DeclareOption{12pt}{\@latexerr{\lipics@opterrshort}{\lipics@opterrlong}}
-\DeclareOption{oneside}{\@latexerr{\lipics@opterrshort}{\lipics@opterrlong}}
-\DeclareOption{twoside}{\@latexerr{\lipics@opterrshort}{\lipics@opterrlong}}
-\DeclareOption{titlepage}{\@latexerr{\lipics@opterrshort}{\lipics@opterrlong}}
-\DeclareOption{notitlepage}{\@latexerr{\lipics@opterrshort}{\lipics@opterrlong}}
-\DeclareOption{onecolumn}{\@latexerr{\lipics@opterrshort}{\lipics@opterrlong}}
-\DeclareOption{twocolumn}{\@latexerr{\lipics@opterrshort}{\lipics@opterrlong}}
-\DeclareOption{fleqn}{\@latexerr{\lipics@opterrshort}{\lipics@opterrlong}}
-\DeclareOption{openbib}{\@latexerr{\lipics@opterrshort}{\lipics@opterrlong}}
+\def\darts@opterrshort{Option  "\CurrentOption" not supported}
+\def\darts@opterrlong{The option "\CurrentOption" from article.cls is not supported by darts.cls.}
+\DeclareOption{a5paper}{\@latexerr{\darts@opterrshort}{\darts@opterrlong}}
+\DeclareOption{b5paper}{\@latexerr{\darts@opterrshort}{\darts@opterrlong}}
+\DeclareOption{legalpaper}{\@latexerr{\darts@opterrshort}{\darts@opterrlong}}
+\DeclareOption{executivepaper}{\@latexerr{\darts@opterrshort}{\darts@opterrlong}}
+\DeclareOption{landscape}{\@latexerr{\darts@opterrshort}{\darts@opterrlong}}
+\DeclareOption{10pt}{\@latexerr{\darts@opterrshort}{\darts@opterrlong}}
+\DeclareOption{11pt}{\@latexerr{\darts@opterrshort}{\darts@opterrlong}}
+\DeclareOption{12pt}{\@latexerr{\darts@opterrshort}{\darts@opterrlong}}
+\DeclareOption{oneside}{\@latexerr{\darts@opterrshort}{\darts@opterrlong}}
+\DeclareOption{twoside}{\@latexerr{\darts@opterrshort}{\darts@opterrlong}}
+\DeclareOption{titlepage}{\@latexerr{\darts@opterrshort}{\darts@opterrlong}}
+\DeclareOption{notitlepage}{\@latexerr{\darts@opterrshort}{\darts@opterrlong}}
+\DeclareOption{onecolumn}{\@latexerr{\darts@opterrshort}{\darts@opterrlong}}
+\DeclareOption{twocolumn}{\@latexerr{\darts@opterrshort}{\darts@opterrlong}}
+\DeclareOption{fleqn}{\@latexerr{\darts@opterrshort}{\darts@opterrlong}}
+\DeclareOption{openbib}{\@latexerr{\darts@opterrshort}{\darts@opterrlong}}
 \DeclareOption{a4paper}{\PassOptionsToClass{\CurrentOption}{article}
                         \advance\hoffset-2.95mm
                         \advance\voffset8.8mm}
@@ -238,10 +204,10 @@
 \setlength\headheight{3mm}
 \setlength\headsep   {10mm}
 \setlength\footskip{3mm}
-\setlength\textwidth{140mm}
+\setlength\textwidth{148mm}%was 140
 \setlength\textheight{222mm}
-\setlength\oddsidemargin{32mm}
-\setlength\evensidemargin{38mm}
+\setlength\oddsidemargin{28mm}%was 32
+\setlength\evensidemargin{34mm}%was 38
 \setlength\marginparwidth{25mm}
 \setlength\topmargin{13mm}
 \setlength{\skip\footins}{2\baselineskip \@plus 4\p@ \@minus 2\p@}
@@ -266,9 +232,9 @@
               \itemsep   \z@ \@plus\p@}
 \def\ps@headings{%
     \def\@evenhead{\large\sffamily\bfseries
-                   \llap{\hbox to0.5\oddsidemargin{\ifx\@ArticleNo\@empty\textcolor{blue}{XX}\else\@ArticleNo\fi:\thepage\hss}}\leftmark\hfil}%
+                   \llap{\hbox to0.5\oddsidemargin{\ifx\@Article\@empty\textcolor{blue}{XX}\else\@Article\fi:\thepage\hss}}\leftmark\hfil}%
     \def\@oddhead{\large\sffamily\bfseries\rightmark\hfil
-                  \rlap{\hbox to0.5\oddsidemargin{\hss\ifx\@ArticleNo\@empty\textcolor{blue}{XX}\else\@ArticleNo\fi:\thepage}}}%
+                  \rlap{\hbox to0.5\oddsidemargin{\hss\ifx\@Article\@empty\textcolor{blue}{XX}\else\@Article\fi:\thepage}}}%
     \def\@oddfoot{\hfil
                   \rlap{%
                     \vtop{%
@@ -281,7 +247,7 @@
                                        \textcolor{darkgray}{\normalsize\sffamily
                                        \bfseries\quad
                                        \expandafter\textsolittle
-                                       \expandafter{\@EventShortTitle}}%
+                                       \expandafter{\@EventShortName}}%
                                      \strut\hss}}}}}
     \let\@evenfoot\@empty
     \let\@mkboth\markboth
@@ -322,6 +288,7 @@
   \newpage
   \null\vskip-\baselineskip
   \vskip-\headsep
+  \ifLineNumbers\nolinenumbers\let\linno@n\relax\fi
   \@titlerunning
   \@authorrunning
   \let \footnote \thanks
@@ -330,7 +297,7 @@
     \vskip 1.5em%
     \ifnum\c@authors=0 %
       \@latexerr{No \noexpand\author given}%
-        {Provide at least one author. See the LIPIcs class documentation.}%
+        {Provide at least one author. See the LITES class documentation.}%
     \else
       \@author
     \fi
@@ -341,10 +308,16 @@
         \string\contitem
         \string\title{\@title}%
         \string\author{\AB@authfortoc}%
-        \string\page{\@ArticleNo:\thepage--\@ArticleNo:\number\numexpr\getpagerefnumber{LastPage}}}%
+        \string\page{\@Article:\thepage--\@Article:\number\numexpr\getpagerefnumber{LastPage}}}%
       \closeout\tocfile
     \egroup
-  \par}
+  \par%
+  \ifx\linno@n\relax\linenumbers\fi}
+\renewcommand\tableofcontents{%
+  \ifLineNumbers\nolinenumbers\let\linno@n\relax\fi
+  \section*{\contentsname}%
+  \@starttoc{toc}%
+  \ifx\linno@n\relax\linenumbers\fi}
 \setcounter{secnumdepth}{4}
 \renewcommand\section{\@startsection {section}{1}{\z@}%
                                    {-3.5ex \@plus -1ex \@minus -.2ex}%
@@ -399,30 +372,81 @@
                {\ifnum\@listdepth=\@ne\global\@nobotseplisttrue\fi\endlist}
 \renewcommand*\descriptionlabel[1]{%
   \hspace\labelsep\textcolor{darkgray}{\sffamily\bfseries\mathversion{bold}#1}}
-\renewenvironment{abstract}{%
-  \vskip\bigskipamount
-  \noindent
-  \rlap{\color[rgb]{0.51,0.50,0.52}\vrule\@width\textwidth\@height1\p@}%
-  \hspace*{7mm}\fboxsep1.5mm\colorbox[rgb]{1,1,1}{\raisebox{-0.4ex}{%
-    \large\selectfont\sffamily\bfseries\abstractname}}%
-  \vskip3\p@
-  \fontsize{9.5}{12.5}\selectfont
-  \noindent\ignorespaces}
-  {\ifx\@subjclass\@empty\else
-     \vskip\baselineskip\noindent
-     \subjclassHeading\@subjclass
-   \fi
-   \ifx\@keywords\@empty\else
-     \vskip\baselineskip\noindent
-     \keywordsHeading\@keywords
-   \fi
-   \ifx\@DOIPrefix\@empty\else
-     \vskip\baselineskip\noindent
-     \doiHeading\doi{\@DOIPrefix.\@EventAcronym.\@EventYear.\@ArticleNo}
-   \fi}
+\newsavebox{\metadatabox}
+\newenvironment{colbox}
+  {\begin{lrbox}{\metadatabox}%
+   \begin{minipage}{\dimexpr\columnwidth-2\fboxsep\relax}}
+  {\end{minipage}\end{lrbox}%
+   \begin{center}
+   \colorbox[rgb]{0.85,0.85,0.86}{\usebox{\metadatabox}}
+   \end{center}}
+\renewenvironment{abstract}
+  {\vskip\bigskipamount
+   \ifLineNumbers\nolinenumbers\let\linno@n\relax\fi
+   \multicolsep\z@
+   \columnsep\parindent
+   \begin{multicols}{2}%
+     [\noindent
+      \rlap{\color[rgb]{0.51,0.50,0.52}\vrule\@width\textwidth\@height1\p@}%
+      {\hspace*{4.5mm}\fboxsep1.5mm\colorbox[rgb]{1,1,1}{\raisebox{-0.4ex}{%
+       \large\selectfont\sffamily\bfseries\abstractname}}}%
+      \vskip3\p@]%
+   \fontsize{9}{12}\selectfont
+   \noindent\ignorespaces}
+  {\end{multicols}%
+   \vskip0.5\baselineskip\noindent
+   \begin{colbox}
+     \fontsize{9}{12}\selectfont
+     \vskip0.3\baselineskip\noindent
+     \subjclassHeading
+     \ifx\@subjclass\@empty
+      \textcolor{red}{MANDATORY:  Please refer to \url{www.acm.org/about/class/2012}}
+     \else
+      \@subjclass
+     \fi
+     \vskip0.1\baselineskip\noindent
+     \keywordsHeading
+     \ifx\@keywords\@empty
+      \textcolor{red}{MANDATORY: Please provide 1--5 keywords as a comma-separated list}
+     \else
+      \@keywords
+     \fi
+     \vskip0.1\baselineskip\noindent
+     \doiHeading
+     \ifx\@DOI\@empty
+     	\ifx\@Volume\@empty
+     		\textcolor{blue}{10.4230/DARTS.VOL.ISS.ART}
+     	\else
+     		\ifx\@Issue\@empty
+     			\textcolor{blue}{10.4230/DARTS.VOL.ISS.ART}
+     		\else
+     			\ifx\@Article\@empty
+     				\textcolor{blue}{10.4230/DARTS.VOL.ISS.ART}
+     			\else
+     				\doi{10.4230/DARTS.\@Volume.\@Issue.\@Article}
+     			\fi
+     		\fi
+     	\fi 		
+     \else
+       \doi{\@DOI}%
+     \fi
+     \vskip0.1\baselineskip\noindent
+     \ifx\@RelatedArticle\@empty\else
+      \vskip0.1\baselineskip\noindent
+      \RelatedArticleHeading\@RelatedArticle
+     \fi
+     \ifx\@RelatedConference\@empty\else
+      \vskip0.1\baselineskip\noindent
+      \RelatedConferenceHeading\@RelatedConference
+     \fi
+      \vskip0.3\baselineskip\noindent
+     \par
+   \end{colbox}
+   \ifx\linno@n\relax\linenumbers\fi}
 \renewenvironment{thebibliography}[1]
   {\if@noskipsec \leavevmode \fi
    \par
+   \ifLineNumbers\nolinenumbers\let\linno@n\relax\fi
    \@tempskipa-3.5ex \@plus -1ex \@minus -.2ex\relax
    \@afterindenttrue
    \@tempskipa -\@tempskipa \@afterindentfalse
@@ -431,28 +455,33 @@
    \else
      \addpenalty\@secpenalty\addvspace\@tempskipa
    \fi
-   \noindent
-   \rlap{\color[rgb]{0.51,0.50,0.52}\vrule\@width\textwidth\@height1\p@}%
-   \hspace*{7mm}\fboxsep1.5mm\colorbox[rgb]{1,1,1}{\raisebox{-0.4ex}{%
-     \normalsize\sffamily\bfseries\refname}}%
-   \@xsect{1ex \@plus.2ex}%
-   \list{\@biblabel{\@arabic\c@enumiv}}%
-        {\leftmargin8.5mm
+   \columnsep\parindent
+   \begin{multicols}{2}%
+     [\noindent
+      \rlap{\color[rgb]{0.51,0.50,0.52}\vrule\@width\textwidth\@height1\p@}%
+      {\hspace*{4.5mm}\fboxsep1.5mm\colorbox[rgb]{1,1,1}{\raisebox{-0.4ex}{%
+      \normalsize\sffamily\bfseries\refname}}}%
+      \@xsect{1ex \@plus.2ex}%
+     \vspace{-\multicolsep}]%
+     \list{\@biblabel{\@arabic\c@enumiv}}%
+        {\leftmargin6mm
          \labelsep\leftmargin
          \settowidth\labelwidth{\@biblabel{#1}}%
          \advance\labelsep-\labelwidth
          \usecounter{enumiv}%
          \let\p@enumiv\@empty
          \renewcommand\theenumiv{\@arabic\c@enumiv}}%
-   \fontsize{9.5}{12.5}\selectfont
-   \sloppy
-   \clubpenalty4000
-   \@clubpenalty \clubpenalty
-   \widowpenalty4000%
-   \sfcode`\.\@m}
+     \fontsize{8}{9.5}\selectfont
+     \sloppy
+     \clubpenalty10000
+     \@clubpenalty \clubpenalty
+     \widowpenalty10000%
+     \sfcode`\.\@m}
   {\def\@noitemerr
-     {\@latex@warning{Empty `thebibliography' environment}}%
-   \endlist}
+       {\@latex@warning{Empty `thebibliography' environment}}%
+     \endlist
+   \end{multicols}%
+   \ifx\linno@n\relax\linenumbers\fi}
 \renewcommand\footnoterule{%
   \kern-8\p@
   {\color[rgb]{0.60,0.60,0.61}\hrule\@width40mm\@height1\p@}%
@@ -528,6 +557,29 @@
 \lstset{basicstyle=\small\ttfamily,%
         backgroundcolor=\color[rgb]{0.85,0.85,0.86},%
         frame=single,framerule=0pt,xleftmargin=\fboxsep,xrightmargin=\fboxsep}
+\RequirePackage{multicol}[2011/06/27]
+\multicolsep = 13pt plus 4pt minus 3pt
+\RequirePackage[left,mathlines]{lineno}
+\linenumbers
+\renewcommand\linenumberfont{\normalfont\tiny\sffamily}
+%%%% patch to cope with amsmath
+%%%% http://phaseportrait.blogspot.de/2007/08/lineno-and-amsmath-compatibility.html
+\newcommand*\patchAmsMathEnvironmentForLineno[1]{%
+  \expandafter\let\csname old#1\expandafter\endcsname\csname #1\endcsname
+  \expandafter\let\csname oldend#1\expandafter\endcsname\csname end#1\endcsname
+  \renewenvironment{#1}%
+     {\linenomath\csname old#1\endcsname}%
+     {\csname oldend#1\endcsname\endlinenomath}}%
+\newcommand*\patchBothAmsMathEnvironmentsForLineno[1]{%
+  \patchAmsMathEnvironmentForLineno{#1}%
+  \patchAmsMathEnvironmentForLineno{#1*}}%
+\AtBeginDocument{%
+  \patchBothAmsMathEnvironmentsForLineno{equation}%
+  \patchBothAmsMathEnvironmentsForLineno{align}%
+  \patchBothAmsMathEnvironmentsForLineno{flalign}%
+  \patchBothAmsMathEnvironmentsForLineno{alignat}%
+  \patchBothAmsMathEnvironmentsForLineno{gather}%
+  \patchBothAmsMathEnvironmentsForLineno{multline}}
 \RequirePackage{lastpage}
 \IfFileExists{doi.sty}
   {\RequirePackage{doi}%
@@ -547,13 +599,20 @@
 \captionsetup{labelformat=boxed}
 \captionsetup[table]{position=top}
 \RequirePackage[figuresright]{rotating}
-\RequirePackage{subcaption} % subfig
+\RequirePackage{subfig}
 \def\titlerunning#1{\gdef\@titlerunning{{\let\footnote\@gobble\markboth{#1}{#1}}}}
 \def\authorrunning#1{%
   \gdef\@authorrunning{\expandafter\def\expandafter\@tempa\expandafter{#1}%
                        \ifx\@tempa\@empty\else\markright{#1}\fi}}
 \titlerunning{\@title}
 \authorrunning{\AB@authrunning}
+\def\Volume#1{\gdef\@Volume{#1}}
+\Volume{}
+\def\Issue#1{\gdef\@Issue{#1}}
+\Issue{}
+\def\Article#1{\gdef\@Article{#1}}
+\Article{}
+\def\FirstPage#1{\setcounter{page}{#1}}
 \RequirePackage{authblk}
 \renewcommand*\Authand{{ and }}
 \renewcommand*\Authfont{\Large\bfseries\mathversion{bold}}
@@ -629,7 +688,7 @@
 \renewcommand\@author{\ifx\AB@affillist\AB@empty\AB@authrunning\else
       \ifnum\value{affil}>\value{Maxaffil}\def\rlap##1{##1}%
     \AB@authlist\\[\affilsep]
-    \labelwidth1.5em\labelsep\z@\leftmargini\labelwidth
+    \labelwidth6mm\labelsep\z@\leftmargini\labelwidth
     \edef\@enumctr{enumi}%
     \list\theenumi{\usecounter\@enumctr\def\makelabel##1{\rlap{##1}\hss}}%
       \AB@affillist
@@ -638,30 +697,41 @@
 \newcommand*\Copyright[1]{%
   \def\@Copyright{%
       \setbox\@tempboxa\hbox{\includegraphics[height=14\p@,clip]{cc-by}}%
-      \hspace*{\wd\@tempboxa}\enskip\ifx#1\@empty \else \textcopyright\ #1;\\\fi
-      \href{http://creativecommons.org/licenses/by/3.0/}%
+      \hspace*{\wd\@tempboxa}\enskip\ifx#1\@empty \else \textcopyright\ #1;\fi\\
+      \href{https://creativecommons.org/licenses/by/3.0/de/deed.en}%
            {\smash{\unhbox\@tempboxa}}\enskip
-            licensed under Creative Commons License CC-BY\\
-    }}
-\Copyright{\@empty}
+            licensed under Creative Commons Attribution 3.0 Germany (CC BY 3.0 DE) \\}}
+\Copyright{\textcolor{red}{Author: Please fill in Copyright macro}}
 \def\keywords#1{\def\@keywords{#1}}
 \let\@keywords\@empty
 \def\keywordsHeading{%
-  \textcolor{darkgray}{\fontsize{9.5}{12.5}\sffamily\bfseries
+  \textcolor{darkgray}{\fontsize{9}{12}\sffamily\bfseries
                        Keywords and phrases\enskip}}
 \def\subjclass#1{\gdef\@subjclass{#1}}
 \let\@subjclass\@empty
 \def\subjclassHeading{%
-  \textcolor{darkgray}{\fontsize{9.5}{12.5}\sffamily\bfseries
+  \textcolor{darkgray}{\fontsize{9}{12}\sffamily\bfseries
                        1998 ACM Subject Classification\enskip}}
 \def\doiHeading{%
-  \textcolor{darkgray}{\fontsize{9.5}{12.5}\sffamily\bfseries
+  \textcolor{darkgray}{\fontsize{9}{12}\sffamily\bfseries
                        Digital Object Identifier\enskip}}
-\setcounter{page}{1}
-
-      
+\def\RelatedConference#1{\gdef\@RelatedConference{#1}}
+\def\RelatedConferenceHeading{%
+  \textcolor{darkgray}{\fontsize{9}{12}\sffamily\bfseries
+                      Related Conference\enskip}}
+\let\@RelatedConference\@empty
+\def\RelatedArticle#1{\gdef\@RelatedArticle{#1}}
+\def\RelatedArticleHeading{%
+  \textcolor{darkgray}{\fontsize{9}{12}\sffamily\bfseries
+                      Related Article\enskip}}
+\let\@RelatedArticle\@empty
+\def\EventShortName#1{\gdef\@EventShortName{#1}}
+\EventShortName{DARTS}
 \def\DOI#1{\gdef\@DOI{#1}}
 \DOI{}
+\g@addto@macro{\UrlBreaks}{%
+  \do\/\do\-}
+
 \endinput
 %%
-%% End of file `lipics.cls'.
+%% End of file `darts.cls'.
